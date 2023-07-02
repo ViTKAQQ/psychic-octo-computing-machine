@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Калькулятор идеального веса</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/red-skull-black-4k-2z-1920x1080.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="red-skull-black-4k-2z-1920x1080.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .btn-calculate {
+            width: 100%;
+        }
+
+        #result {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                max-width: 100%;
+                margin: 20px;
+                border-radius: 0;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Калькулятор идеального веса</h1>
+        <form>
+            <div class="mb-3">
+                <label for="height" class="form-label">Ваш рост (в сантиметрах):</label>
+                <input type="number" id="height" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="gender" class="form-label">Ваш пол:</label>
+                <select id="gender" class="form-select">
+                    <option value="male">Мужской</option>
+                    <option value="female">Женский</option>
+                </select>
+            </div>
+            <button type="button" class="btn btn-primary btn-calculate"
+                onclick="calculateIdealWeight()">Рассчитать</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculateIdealWeight() {
+            var heightInput = document.getElementById('height');
+            var genderInput = document.getElementById('gender');
+            var height = parseInt(heightInput.value);
+            var gender = genderInput.value;
+
+            if (isNaN(height) || height <= 0) {
+                alert('Пожалуйста, введите корректный рост.');
+                return;
+            }
+
+            var idealWeight;
+
+            if (gender === 'male') {
+                idealWeight = (height - 100) - ((height - 100) * 0.1);
+            } else if (gender === 'female') {
+                idealWeight = (height - 100) - ((height - 100) * 0.15);
+            }
+
+            var resultElement = document.getElementById('result');
+            resultElement.innerHTML = 'Ваш идеальный вес: ' + idealWeight.toFixed(2) + ' кг.';
+        }
+    </script>
+</body>
+
+</html>
